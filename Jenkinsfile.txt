@@ -5,14 +5,14 @@ pipeline {
         stage('Restore Dependencies') {
             steps {
                 script {
-                    bat 'dotnet restore "Bank Application Extended.csproj"'
+                    bat 'dotnet restore "Bank/Bank Application Extended.csproj"'
                 }
             }
         }
         stage('Build') {
             steps {
                 script {
-                    bat 'dotnet build "Bank Application Extended.csproj" --configuration Release'
+                    bat 'dotnet build "Bank/Bank Application Extended.csproj" --configuration Release'
                 }
             }
         }
