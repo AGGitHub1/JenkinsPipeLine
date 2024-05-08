@@ -1,0 +1,69 @@
+pipeline {
+    agent any
+    environment {
+        // Define your environment variables here if needed
+    }
+    stages {
+        stage('Build') {
+            steps {
+                echo 'Building the application...'
+                // Example: Using Maven to build a Java project
+                sh 'mvn clean package'
+            }
+        }
+        stage('Unit and Integration Tests') {
+            steps {
+                echo 'Running unit and integration tests...'
+                // Example: Using Maven to run tests
+                sh 'mvn test'
+            }
+        }
+        stage('Code Analysis') {
+            steps {
+                echo 'Analysing the code...'
+                // Example: Using SonarQube for code quality checks
+                sh 'mvn sonar:sonar'
+            }
+        }
+        stage('Security Scan') {
+            steps {
+                echo 'Performing security scan...'
+                // Example: Using OWASP Dependency Check
+                sh 'mvn dependency-check:check'
+            }
+        }
+        stage('Deploy to Staging') {
+            steps {
+                echo 'Deploying to staging environment...'
+                // Example: Using a script to deploy to AWS EC2 or another staging environment
+                sh './deploy_staging.sh'
+            }
+        }
+        stage('Integration Tests on Staging') {
+            steps {
+                echo 'Running integration tests on staging...'
+                // Example: Triggering tests that are specific to the staging environment
+                sh 'mvn verify'
+            }
+        }
+        stage('Deploy to Production') {
+            steps {
+                echo 'Deploying to production environment...'
+                // Example: Using a script to deploy to AWS EC2 or another production environment
+                sh './deploy_production.sh'
+            }
+        }
+    }
+    post {
+        success {
+            mail to: s223290808@deakin.edu.au,
+                 subject: "SUCCESS: Build ${currentBuild.fullDisplayName}",
+                 body: "The build was successful. Check out the details at ${env.BUILD_URL}"
+        }
+        failure {
+            mail to: s223290808@deakin.edu.au,
+                 subject: "FAILURE: Build ${currentBuild.fullDisplayName}",
+                 body: "The build failed. Check out the details at ${env.BUILD_URL}"
+        }
+    }
+}
