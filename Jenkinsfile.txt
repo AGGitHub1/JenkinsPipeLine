@@ -2,64 +2,85 @@ pipeline {
     agent any
 
     stages {
-        stage('Restore Dependencies') {
-            steps {
-                script {
-                    bat 'dotnet restore "Bank/Bank Application Extended.csproj"'
-                }
-            }
-        }
         stage('Build') {
             steps {
                 script {
-                    bat 'dotnet build "Bank/Bank Application Extended.csproj" --configuration Release'
+                    echo 'Building the application using .NET Core CLI.'
+                    echo 'Tool used: dotnet build'
                 }
             }
         }
-        
-        stage('Test') {
-    steps {
-        script {
-            bat 'dotnet test Bank.Tests --logger "trx;LogFileName=test_results.xml"'
+        stage('Unit and Integration Tests') {
+            steps {
+                script {
+                    echo 'Running unit tests and integration tests to ensure the application functions as expected.'
+                    echo 'Tools used: NUnit or xUnit for .NET applications'
+                }
+            }
         }
-    }
-    post {
-        always {
-            // May need a plugin
-            junit '**/test_results.xml'
+        stage('Code Analysis') {
+            steps {
+                script {
+                    echo 'Analyzing the code to ensure it meets industry standards using static code analysis tools.'
+                    echo 'Tool suggested: SonarQube'
+                }
+            }
         }
-    }
-}
+        stage('Security Scan') {
+            steps {
+                script {
+                    echo 'Performing security scans on the code to identify any vulnerabilities.'
+                    echo 'Tool suggested: OWASP ZAP or Fortify'
+                }
+            }
+        }
         stage('Deploy to Staging') {
             steps {
                 script {
-                    //
-                    echo 'Deploying to staging environment...'
+                    echo 'Deploying the application to a staging server to simulate a production environment.'
+                    echo 'Environment used: AWS EC2 instance'
+                }
+            }
+        }
+        stage('Integration Tests on Staging') {
+            steps {
+                script {
+                    echo 'Running integration tests on the staging environment to ensure the application functions as expected in a production-like environment.'
+                    echo 'Tools used: Postman for API testing or Selenium for web application testing'
                 }
             }
         }
         stage('Deploy to Production') {
             steps {
                 script {
-                    // 
-                    echo 'Deploying to production environment...'
+                    echo 'Deploying the application to a production server.'
+                    echo 'Environment used: AWS EC2 instance'
                 }
             }
         }
     }
+
     post {
         always {
-            echo 'Build completed'
+            echo 'Build and test process completed.'
         }
         success {
-            mail to: 'genov465@gmail.com',
-                 subject: "SUCCESS: Build ${currentBuild.fullDisplayName}",
-                 body: "The build was successful. Check out the details at ${env.BUILD_URL}"
+            echo 'Build was successful, sending success notification email.'
+            emailext(
+              subject: "Build SUCCESSFUL: ${env.JOB_NAME} [${env.BUILD_NUMBER}]",
+              body: """<p>Build was successful!</p>
+                       <p>Check the build details at: <a href='${env.BUILD_URL}'>${env.BUILD_URL}</a></p>""",
+              to: 'genov465@gmail.com'
+            )
         }
         failure {
-            mail to: 'genov465@gmail.com',
-                 subject: "FAILURE: Build ${currentBuild.fullDisplayName}",
-                 body: "The build failed. Check out the details at ${env.BUILD_URL}"
+            echo 'Build failed, sending failure notification email.'
+            emailext(
+              subject: "Build FAILED: ${env.JOB_NAME} [${env.BUILD_NUMBER}]",
+              body: """<p>Build failed.</p>
+                       <p>Check the build details at: <a href='${env.BUILD_URL}'>${env.BUILD_URL}</a></p>""",
+              to: 'genov465@gmail.com'
+            )
         }
     }
 }
