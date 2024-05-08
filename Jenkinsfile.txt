@@ -55,15 +55,18 @@ pipeline {
         }
     }
     post {
-        success {
-            mail to: s223290808@deakin.edu.au,
-                 subject: "SUCCESS: Build ${currentBuild.fullDisplayName}",
-                 body: "The build was successful. Check out the details at ${env.BUILD_URL}"
-        }
-        failure {
-            mail to: s223290808@deakin.edu.au,
-                 subject: "FAILURE: Build ${currentBuild.fullDisplayName}",
-                 body: "The build failed. Check out the details at ${env.BUILD_URL}"
-        }
+    success {
+        mail(
+            to: 's223290808@deakin.edu.au',
+            subject: "SUCCESS: Build ${currentBuild.fullDisplayName}",
+            body: "The build was successful. Check out the details at ${env.BUILD_URL}"
+        )
+    }
+    failure {
+        mail(
+            to: 's223290808@deakin.edu.au',
+            subject: "FAILURE: Build ${currentBuild.fullDisplayName}",
+            body: "The build failed. Check out the details at ${env.BUILD_URL}"
+        )
     }
 }
