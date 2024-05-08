@@ -65,22 +65,14 @@ pipeline {
             echo 'Build and test process completed.'
         }
         success {
-            echo 'Build was successful, sending success notification email.'
-            emailext(
-              subject: "Build SUCCESSFUL: ${env.JOB_NAME} [${env.BUILD_NUMBER}]",
-              body: """<p>Build was successful!</p>
-                       <p>Check the build details at: <a href='${env.BUILD_URL}'>${env.BUILD_URL}</a></p>""",
-              to: 'genov465@gmail.com'
-            )
+            mail to: 'genov465@gmail.com',
+                 subject: "SUCCESS: Build ${currentBuild.fullDisplayName}",
+                 body: "The build was successful. Check out the details at ${env.BUILD_URL}"
         }
         failure {
-            echo 'Build failed, sending failure notification email.'
-            emailext(
-              subject: "Build FAILED: ${env.JOB_NAME} [${env.BUILD_NUMBER}]",
-              body: """<p>Build failed.</p>
-                       <p>Check the build details at: <a href='${env.BUILD_URL}'>${env.BUILD_URL}</a></p>""",
-              to: 'genov465@gmail.com'
-            )
+            mail to: 'genov465@gmail.com',
+                 subject: "FAILURE: Build ${currentBuild.fullDisplayName}",
+                 body: "The build failed. Check out the details at ${env.BUILD_URL}"
         }
     }
 }
