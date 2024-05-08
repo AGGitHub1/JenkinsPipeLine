@@ -44,12 +44,12 @@ pipeline {
             echo 'Build completed'
         }
         success {
-            mail to: 'ss223290808@deakin.edu.au',
+            mail to: 'genov465@gmail.com',
                  subject: "SUCCESS: Build ${currentBuild.fullDisplayName}",
                  body: "The build was successful. Check out the details at ${env.BUILD_URL}"
         }
         failure {
-            mail to: 'ss223290808@deakin.edu.au',
+            mail to: 'genov465@gmail.com',
                  subject: "FAILURE: Build ${currentBuild.fullDisplayName}",
                  body: "The build failed. Check out the details at ${env.BUILD_URL}"
         }
