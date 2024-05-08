@@ -1,0 +1,15 @@
+C:\Users\genov\source\repos\SIT232\Bank Application\Bank Application Extended\bin\Debug\net8.0\Bank Application Extended.exe
+C:\Users\genov\source\repos\SIT232\Bank Application\Bank Application Extended\bin\Debug\net8.0\Bank Application Extended.deps.json
+C:\Users\genov\source\repos\SIT232\Bank Application\Bank Application Extended\bin\Debug\net8.0\Bank Application Extended.runtimeconfig.json
+C:\Users\genov\source\repos\SIT232\Bank Application\Bank Application Extended\bin\Debug\net8.0\Bank Application Extended.dll
+C:\Users\genov\source\repos\SIT232\Bank Application\Bank Application Extended\bin\Debug\net8.0\Bank Application Extended.pdb
+C:\Users\genov\source\repos\SIT232\Bank Application\Bank Application Extended\obj\Debug\net8.0\Bank Application Extended.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\genov\source\repos\SIT232\Bank Application\Bank Application Extended\obj\Debug\net8.0\Bank Application Extended.AssemblyInfoInputs.cache
+C:\Users\genov\source\repos\SIT232\Bank Application\Bank Application Extended\obj\Debug\net8.0\Bank Application Extended.AssemblyInfo.cs
+C:\Users\genov\source\repos\SIT232\Bank Application\Bank Application Extended\obj\Debug\net8.0\Bank Application Extended.csproj.CoreCompileInputs.cache
+C:\Users\genov\source\repos\SIT232\Bank Application\Bank Application Extended\obj\Debug\net8.0\Bank Application Extended.sourcelink.json
+C:\Users\genov\source\repos\SIT232\Bank Application\Bank Application Extended\obj\Debug\net8.0\Bank Application Extended.dll
+C:\Users\genov\source\repos\SIT232\Bank Application\Bank Application Extended\obj\Debug\net8.0\refint\Bank Application Extended.dll
+C:\Users\genov\source\repos\SIT232\Bank Application\Bank Application Extended\obj\Debug\net8.0\Bank Application Extended.pdb
+C:\Users\genov\source\repos\SIT232\Bank Application\Bank Application Extended\obj\Debug\net8.0\Bank Application Extended.genruntimeconfig.cache
+C:\Users\genov\source\repos\SIT232\Bank Application\Bank Application Extended\obj\Debug\net8.0\ref\Bank Application Extended.dll
