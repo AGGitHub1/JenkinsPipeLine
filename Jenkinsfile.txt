@@ -16,16 +16,24 @@ pipeline {
                 }
             }
         }
-        // Optional: Placeholder for future testing stage
+        
         stage('Test') {
-            steps {
-                echo 'No tests to run.'
-            }
+    steps {
+        script {
+            bat 'dotnet test Bank.Tests --logger "trx;LogFileName=test_results.xml"'
         }
+    }
+    post {
+        always {
+            // May need a plugin
+            junit '**/test_results.xml'
+        }
+    }
+}
         stage('Deploy to Staging') {
             steps {
                 script {
-                    // Include your staging deployment script or command here
+                    //
                     echo 'Deploying to staging environment...'
                 }
             }
@@ -33,7 +41,7 @@ pipeline {
         stage('Deploy to Production') {
             steps {
                 script {
-                    // Include your production deployment script or command here
+                    // 
                     echo 'Deploying to production environment...'
                 }
             }
